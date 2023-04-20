@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_form2.html</title>
+</head>
+<body>
+    <div class="container">
+        <h1>회원 가입 폼 입니다.</h1>
+        <form action="signup.jsp">
+            <label for="email">이메일</label>
+            <input type="text" id="email" name="email"><br>
+            <fieldset>
+                <legend>성별 정보 선택</legend>
+                <label>
+                    <input type="radio" name="gender" value="man" checked> 남자
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="woman"> 여자
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>취미 정보 선택</legend>
+                <!-- legend는 fieldset의 제목을 쓰는 것이다.. -->
+                <label>
+                    <input type="checkbox" name="hobby" value="soccer"> 축구
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="baking"> 베이킹
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="piano"> 피아노
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="etc"> 기타
+                </label>                
+            </fieldset>
+            
+            <button type="submit">가입</button>
+        </form>
+    </div>
+</body>
+</html>

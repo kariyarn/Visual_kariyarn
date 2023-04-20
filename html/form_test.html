@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formTest.html</title>
+    <style>
+        #div_text{
+            width: 600px; height:100px; border:1px solid #333;
+            text-align: left;
+        }
+        .textbox label{
+            position: absolute;
+            top: 1px;  /* input 요소의 border-top 설정값 만큼 */
+            left: 1px;  /* input 요소의 border-left 설정값 만큼 */
+            padding: .8em .5em;  /* input 요소의 padding 값 만큼 */
+            color: #999;
+            cursor: text;
+        }
+    </style>
+</head>
+<body>
+    <div id="div_text">
+        <h1>AcornStudent 조준근 FORM 23.04.06과제</h1>
+        <form action="personal details">
+            <label for="FirstName">FIRST NAME</label>
+            <input type="text" id="FirstName" name="firstname">
+            <br>
+            <label for="LastName">LAST NAME</label>
+            <input type="text" id="LastName" name="lastname">
+            <br>
+            <label for="BirthDay">DATE OF BIRTH</label>
+            <input type="date" name="BirthDay">
+            <br>
+            <label for="email">EMAIL</label>
+            <input type="text" id="email" name="email">
+            <br>
+            <label for="MobileNumber">MOBILE NUMBER</label>
+            <input type="text" id="MobileNumber" name="mobilenumber">
+            <br>
+            <label for="gender">GENDER</label>
+            <input type="radio" name="gen" value="man">Male
+            <input type="radio" name="gen" value="woman">Female
+            <br>
+            <label for="address">ADDRESS</label>
+            <textarea name="address" id="address" cols="30" rows="10">주소를 입력하세요.</textarea>
+            <br>
+            <label for="city">CITY</label>
+            <input type="text" id="city" name="city">
+            <br>
+            <label for="PinCode">PIN CODE</label>
+            <input type="text" id="PinCode" name="pincode">
+            <br>
+            <label for="state">STATE</label>
+            <input type="text" id="state" name="state">
+            <br>
+            <label for="country">COUNTRY</label>
+            <input type="text" id="country" name="country">
+            <br>
+            <fieldset>
+                <legend>취미 선택란</legend>
+                    <label>
+                        <input type="checkbox" name="hobby" value="CODING">Coding
+                    </label>
+                    <label>
+                        <input type="checkbox" name="hobby" value="WorkOut">Work out
+                    </label>
+                    <label>
+                        <input type="checkbox" name="hobby" value="watch">Watch
+                    </label>
+                    <label>
+                        <input type="checkbox" name="hobby" value="music">Listen Music
+                    </label>
+                    <label>
+                        <input type="checkbox" name="hobby" value="draw">Drawing
+                    </label>
+                    <br>
+                    <label>
+                        <input type="checkbox" name="hobby" value="others">Others
+                        <input type="text" name="hobby">
+                    </label>
+            </fieldset>
+            <fieldset>
+                <legend>나의 MBTI 입력</legend>
+                <label for="mbti"></label>
+                <select name="mbti" id="mbti">
+                    <option value="">선택</option>
+                    <option value="INTJ">INTJ전략가</option>
+                    <option value="INTP">INTP논리술사</option>
+                    <option value="ENTJ">ENTJ통솔자</option>
+                    <option value="ENTP">ENTP변론가</option>
+                    <option value="INFJ">INFJ옹호자</option>
+                    <option value="INFP">INFP중재자</option>
+                    <option value="ENFJ">ENFJ선도자</option>
+                    <option value="ENFP">ENFP활동가</option>
+                    <option value="ISTJ">ISTJ현실주의자</option>
+                    <option value="ISFJ">ISFJ수호자</option>
+                    <option value="ESTJ">ESTJ경영자</option>
+                    <option value="ESFJ">ESFJ집정관</option>
+                    <option value="ISTP">ISTP장인</option>
+                    <option value="ISFP">ISFP모험가</option>
+                    <option value="ESTP">ESTP사업가</option>
+                    <option value="ESFP">ESFP연예인</option>
+                </select>
+                <br>
+                <h3>MBTI에대해서 자세한 설명보기</h3>
+                <a href="https://www.16personalities.com/ko"title="mbti페이지로 이동합니다."><img src="https://www.16personalities.com/static/images/system/logo.svg"></a>
+            </fieldset>
+            <button type="submit">제출하기</button>
+            <button type="reset">초기화</button>
+        </form>
+    </div>
+    
+</body>
+</html>

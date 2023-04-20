@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step04_Loop2.html</title>
+</head>
+<body>
+    <h1>반복문 테스트</h1>
+    <!-- p{p$}*10 한번에 여러개의 코드 만듦 -->
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+    <p>p6</p>
+    <p>p7</p>
+    <p>p8</p>
+    <p>p9</p>
+    <p>p10</p>
+    <button onclick="changeColor()">바꾸기</button>
+    
+    <script>
+        //바꾸기 버튼을 눌렀을 때 모든 p 요소의 color를 "red"로 바뀌도록 프로그래밍
+        let changeColor =()=>{
+            for(i = 0; i < 10; i++){
+                document.querySelectorAll("p")[i].innerText = "p" + i + "가 커집니다";
+                document.querySelectorAll("p")[i].style.color = "red";
+                document.querySelectorAll("p")[i].style.fontSize = (i+10) + "px";
+            };
+        };
+    </script>
+</body>
+</html>

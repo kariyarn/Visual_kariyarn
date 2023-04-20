@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step06_Event4.html</title>
+    <style>
+        .wrapper{
+            display: flex;
+        }
+
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>원하는 박스를 클릭해 보세요</h1>
+    <div class="wrapper">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+        <div class="box">box5</div>
+        <div class="box">box6</div>
+        <div class="box">box7</div>
+        <div class="box">box8</div>
+        <div class="box">box9</div>
+        <div class="box">box10</div>
+    </div>
+    <script>
+
+        /*
+            클릭된 box div의 배경색을 노란색으로 변경되도록 프로그래밍 해 보세요
+
+            //10개니까 10개의 이벤트 리스너가 등록이 되어야 한다.
+            //어제 배운거 함께 생각해서 해보자
+
+            //일단 -> 눌렀을 때 배경식이 바뀌어야 한다.
+            //docu...bakcolor = "yellow";
+            //어떤 박스를 클릭했는지를 알아야 한다. ->console
+            //click = 배열에 놓는다.
+            //색을 바꾼다.
+
+            document.querySelector(".wrapper").addEventListener("click", (event)=>{            
+            let box = event.target
+            //복잡하게 방이니 배열이니 생각할거 없이 그냥 이벤트가 일어난 타겟을 알아보면 되는 거였음.
+            box.style.backgroundColor = "yellow";
+        });
+
+        */
+    
+
+        //되기는 하는데 좀 틀림
+
+        
+
+        //document.querySelector(".box").addEventListener("click", (event)=>{
+        //    console.log(event.target)
+        //});
+        
+        for(let i = 0; i <10; i++){         
+            document.querySelectorAll(".box")[i].addEventListener("click", (e)=>{
+            e.target.style.backgroundColor = "yellow";
+        })
+        }
+
+    </script>
+    
+</body>
+</html>

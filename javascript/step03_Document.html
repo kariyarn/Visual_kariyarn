@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step03_Document.html</title>
+</head>
+<body>
+    <h1>Document object 사용해 보기</h1>
+    <button onclick="changeText()">바꾸기</button>
+    <p id="one" onmouseover="changeP1()">p1</p>
+    <p class="my-class">p2</p>
+    <p class="my-class">p3</p>
+    <input type="text" id="two">
+    <button onclick ="send()">전송 &rarr;</button>
+    <!-- &rarr; = 오른쪽 화살표 -->
+    <input type="text" id="three">
+    
+    <script>
+        //h1요소의 innerText의 특정(바꾸기) 버튼을 눌렀을때 바꾸고 싶다.
+
+        let changeText = function(){            
+            document.querySelector("h1").innerText = "바꿈";            
+        };
+        let changeP1 =()=>{
+            document.querySelector("p").innerText = "마우스가 올라왔네?";
+        };
+   
+        let send =()=>{
+            //1. 첫번째 input요소에 입력한 value를 읽어온다.
+            //2. 위에서 읽어온 value 값을 두번째 input 요소의 value 값으로 넣어준다.
+            //내가한것 document.querySelector("#three").value = document.querySelector("#two").value
+            let msg = document.querySelector("#two").value;
+            //변수를 만든다는 생각을 안했네ㅇㅇ
+            document.querySelector("#three").value = msg;
+        };
+
+        
+
+        //page로딩된 시점에서 변수가 정해짐 -> 나중에 수정했다고 해서 값이 바뀔리는 없다.
+        //버튼을 누른 그 시점에 입력이 되어야 한다는 생각...
+        /*
+        let first = document.querySelector("#two").value;
+        let second = document.querySelector("#three").value;
+
+        let send=()=>{
+            second = first
+        };
+        */
+        /*
+        let firstInput = document.querySelector("#two");
+        let secondInput = document.querySelector("#three");
+
+        let send=()=>{
+            secondInput.value = firstInput.value
+        }; */
+
+        //p1에 mouseover가 되었을 때 innertext를 "마우스가 올라왔네?"라고 변경
+
+    </script>
+</body>
+</html>

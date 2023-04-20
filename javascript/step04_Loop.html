@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step04_Loop.html</title>
+</head>
+<body>
+
+<p>p1입니다</p>
+<p>p2입니다</p>
+<p>p3입니다</p>
+<p>p4입니다</p>
+<p>p5입니다</p>
+<p>p6입니다</p>
+<p>p7입니다</p>
+<p>p8입니다</p>
+<p>p9입니다</p>
+<p>p10입니다</p>
+
+    <script>
+        //페이지 로딩 시점에 있는 모든 p 요소의 inner Text를 "김구라"로 변경시켜 보세요
+        
+        //총 100번 반복이 되고 반복되는 동안에 i값이 0~9까지 1씩 증가한다.(0~9 = 10);
+        for(let i = 0; i < 10; i++) {
+            console.log("반복되네?");
+            console.log(i);
+            document.querySelectorAll("p")[i].innerText = "김구라" + i + "입니다";
+        }
+    </script>
+
+</body>
+</html>

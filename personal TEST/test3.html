@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step06_Event03.html</title>
+    <style>
+        .box{
+
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: yellow;
+            cursor: pointer;
+            transition: margin-left 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">div1</div>
+    <div class="box">div2</div>
+    <div class="box">div3</div>
+    <div class="box">div4</div>
+    <div class="box">div5</div>
+    <button class="button">reset</button>
+    <script>
+
+        let divs=document.querySelectorAll(".box");
+        let reset = document.querySelectorAll(".button");
+
+        for(let i=0; i<divs.length; i++){
+            //margin-left 값을 저장할 변수를 만들고 초기값 0 부여 
+            let mLeft=0;
+
+            reset[0].addEventListener("click", ()=>{
+                mLeft = 0;
+                divs[i].style.marginLeft = mLeft + "px";
+            })
+
+            divs[i].addEventListener("click", (e)=>{
+                mLeft += 100;
+                e.target.style.marginLeft = mLeft+"px";
+            });
+        }
+    </script>
+</body>
+</html>

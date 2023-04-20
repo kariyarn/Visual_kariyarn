@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step04_Loop5</title>
+</head>
+<body>
+    <h1>배열의 함수를 활용해서 반복작업을 수행하기</h1>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+    <button onclick="print()">출력하기</button>
+    <script>
+
+        let nums = [10, 20, 30, 40, 50];
+        /*
+        nums.forEach(function(item, index){
+            console.log(index+ " : " + item)
+        });
+        */
+
+        /*
+        
+        출력하기 버튼을 누르면 nums 배열에 담긴 숫자가 위의 p요소에 순서대로 출력되도록 프로그래밍 해보세요
+        단)배열이 가지고 있는 forEach함수를 활용해서
+
+        */
+
+        let print =()=>{
+            nums.forEach(function(item, index){
+                document.querySelectorAll('p')[index].innerText = item;
+            })          
+        };
+
+        /*foreach의 매개변수 item, index는 내가 만든 매개변수명이지만, 각각 매개될때 item는 array배열의 값, 그리고 index는 배열의 방 번호를 의미한다.
+        즉, 매개변수의 첫번째에는 값이 들어가고 index에서는 방 번호가 배치되는 것이다.
+        때문에 index를 사용해서 각각의 방 번호를 부여하고, innerText = item에는 방 안에 있는 내용물(숫자)가 대입된다.
+        이게 배열이 존재하는 만큼 실행되므로...
+        60을 추가하고 p를 하나 더 추가해보면?
+        
+        */
+
+    </script>
+</body>
+</html>

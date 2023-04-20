@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step06_Event4.html</title>
+    <style>
+        .wrapper{
+            display: flex;
+        }
+
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>원하는 박스를 클릭해 보세요</h1>
+    <div class="wrapper">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+        <div class="box">box5</div>
+        <div class="box">box6</div>
+        <div class="box">box7</div>
+        <div class="box">box8</div>
+        <div class="box">box9</div>
+        <div class="box">box10</div>
+    </div>
+    <script>
+
+        //.box div의 참조값을 배열에 모두 담아오기
+        let divs = document.querySelectorAll(".box");
+
+        //array는 forEach라는 값을 가지고 있다.
+        //foreach는 호출된 즉시 배열의 아이템 갯수만큼
+        //item은 div의 참조값이며 event Listner 함수를 등록해야 한다.
+        //index =0,1,2,3,4,...
+        divs.forEach((item)=>{
+            item.addEventListener("click", (e)=>{
+                e.target.style.backgroundColor = "yellow";
+            })
+        })
+
+    </script>
+    
+</body>
+</html>

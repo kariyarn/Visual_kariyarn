@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .my-table{
+
+            
+            color: blue;
+            background-color: red;
+            width: 200px;
+            height: 200px;
+        }
+
+        #one{
+
+            width: 400px;
+            height: 400px;
+            color: red;
+            background-color: blue;
+            
+
+        }
+        #two{
+
+            height: 200px;
+            width: 200px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <table class="my-table" border="1">
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td colspan="2">1</td>
+            <td>태전동</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td rowspan="2">강서우</td>
+            <td>잠실동</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>청담동</td>
+        </tr>
+    </table>
+
+    <table id="one" border="3">
+        <tr>마스터듀얼</tr>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>티어</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>티아라</td>
+                <td>0tier</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>후완</td>
+                <td>2tier</td>
+            </tr>
+    </table>
+
+    <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+
+    <fieldset>영역</fieldset>
+        <legend>제목을 씁니다.
+        <input value="여기에 하고싶은 말을 입력하시오"><br>
+    <textarea id="two"></textarea>
+
+    <a href="https://namu.wiki"><img src="images/01_iron_man_2.jpg" alt="아이언맨 누르면 나무위키감"></a>
+</body>
+</html>

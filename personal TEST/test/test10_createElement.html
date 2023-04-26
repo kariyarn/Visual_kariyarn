@@ -18,14 +18,26 @@
     <script>
         //id가 sendBtn인 곳에 "click" 이벤트가 일어났을 때 실행할 callback 함수 등록
             let send = document.querySelector("#sendBtn").addEventListener("click", ()=>{
-
                 let msg = document.querySelector("#inputMsg").value;
                 let li = document.createElement("li");
                 li.innerText = msg;
                 document.querySelector("#msgList").append(li);
                 document.querySelector("#inputMsg").value = null;
+            });
 
+            //input에 Enter Key를 입력하면 버튼을 누른 것과 같이 동작하는 것.
+            let enter = document.querySelector("input").addEventListener("keyup", (e)=>{            
+                if(e.key == 'Enter'){
+                    let msg = document.querySelector("#inputMsg").value;
+                    let li = document.createElement("li");
+                    li.innerText = msg;
+                    document.querySelector("#msgList").append(li);
+                    document.querySelector("#inputMsg").value = null;
 
+                }else{
+
+        
+                }
 
             });
 

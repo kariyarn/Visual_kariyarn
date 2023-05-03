@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step09_Example5.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 활용해 보기</h1>
+    <canvas id="myCanvas" width="800" height="500"></canvas>
+    <script>
+
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        const snipeImg = new Image();
+        snipeImg.src = "images/snipe.png";
+        
+        const holeImg = new Image();
+        holeImg.src = "images/hole.png"
+
+        const backImg=new Image();
+        backImg.src="images/background.jpg";
+
+        let snipeX = 0, snipeY = 0;
+        //총알 구멍의 객체(object)를 저장할 배열
+        const holes=[];
+
+        setInterval(() => {
+            //지워지지만
+            //context.clearRect(0, 0, 800, 500);
+            //배경이미지를 canvas의 크기에 맞게 그린다.
+            context.drawImage(backImg, 0, 0, 800, 500);
+            //총알 구멍 이미지
+            //계속해서 만들어짐
+            context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
+            for(let i=0; i<holes.length; i++){
+                //i번째 총알 구멍 이미지를 가진 정보 객체를 불러와서
+                let tmp = holes[i]
+                //거기에 담긴 x,y좌표를 이용해서 총알 구멍을 그린다.
+                context.drawImage(holeImg, tmp.x-10, tmp.y-10, 20,20);
+            }
+        }, 10);
+        //마우스 move될 때마다 설정됨
+        canvas.addEventListener("mousemove",(e)=>{
+            snipeX = e.offsetX;
+            snipeY = e.offsetY;
+        })
+        //마우스 down될 때마다 설정됨
+        canvas.addEventListener("mousedown",(e)=>{
+            //이벤트가 발생한 곳의 좌표를 object에 담는다.
+            const hole={x:e.offsetX, y:e.offsetY};
+            //holes배열에 저장(누적)시킨다.
+            holes.push(hole);
+        })
+    </script>    
+</body>
+</html>

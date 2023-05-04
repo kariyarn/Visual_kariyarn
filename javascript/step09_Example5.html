@@ -28,24 +28,55 @@
         const backImg=new Image();
         backImg.src="images/background.jpg";
 
+        //토끼 이미지 로딩
+        const rabbitImg1=new Image();
+        rabbitImg1.src="images/rabbit_1.png"
+        const rabbitImg2=new Image();
+        rabbitImg2.src="images/rabbit2.png"
+        //로딩된 이미지를 배열에 담아 놓는다(나중에 애니메이션 효과를 주기 위해서)
+        const rabbitImgs = [rabbitImg1, rabbitImg2];
+
         let snipeX = 0, snipeY = 0;
         //총알 구멍의 객체(object)를 저장할 배열
         const holes=[];
+        //토끼의 좌표
+        let rabbitX = 400, rabbitY = 250;
+        //토끼 이미지 인덱스
+        let rabbitIndex =0;
+        //카운트를 셀 변수
+        let count = 0;
 
         setInterval(() => {
+            //함수가 호출될 때마다 count를 1씩 증가시킨다.
+            count++;
+
             //지워지지만
             //context.clearRect(0, 0, 800, 500);
             //배경이미지를 canvas의 크기에 맞게 그린다.
             context.drawImage(backImg, 0, 0, 800, 500);
             //총알 구멍 이미지
             //계속해서 만들어짐
-            context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
             for(let i=0; i<holes.length; i++){
                 //i번째 총알 구멍 이미지를 가진 정보 객체를 불러와서
                 let tmp = holes[i]
                 //거기에 담긴 x,y좌표를 이용해서 총알 구멍을 그린다.
                 context.drawImage(holeImg, tmp.x-10, tmp.y-10, 20,20);
             }
+            //토끼 그리기
+            context.drawImage(rabbitImgs[rabbitIndex], rabbitX-50, rabbitY-50, 100,100);
+            //스나이프 그리기
+            context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
+            //20번 호출될 때
+            if(count%20 == 0){
+                //여기는 한번만 호출된다.
+                rabbitIndex++;
+                if(rabbitIndex==2){
+                rabbitIndex = 0;
+            }
+            }
+            //토끼 이미지 인덱스 1씩 증가 시키기
+            //만일 존재하지 않는 인덱스라면 0으로 초기화 하기
+            
         }, 10);
         //마우스 move될 때마다 설정됨
         canvas.addEventListener("mousemove",(e)=>{

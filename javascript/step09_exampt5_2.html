@@ -83,9 +83,24 @@
         //초침 이미지
         const secImg=new Image();
         secImg.src="images/clock_sec.png";
+
+        //분침 이미지
+        const minImg = new Image();
+        minImg.src="images/clock_min.png";
+
+        //시침 이미지
+        const hourImg = new Image();
+        hourImg.src="images/clock_hour.png";
+
+        //캡 이미지
+        const capImg=new Image();
+        capImg.src="images/clock_point.png";
+
         //시계를 그릴 좌표
         const clockX = 700;
         const clockY = 100;
+
+        let countSec = 0;
 
         setInterval(()=>{
             //함수가 호출될때 마다 count를 1씩 증가 시킨다.
@@ -102,13 +117,37 @@
             context.translate(clockX, clockY);
             //시계를 원점에 그리기
             context.drawImage(dialImg, 0-100, 0-100, 200, 200);
-            //테스트로 초침을 그리기 전에 context를 30도 회전해서 그려보기
-            context.rotate(count*Math.PI/180);
+            //현재시간
+            const d = new Date();
+            const hour = d.getHours();
+            const min = d.getMinutes();
+            const sec = d.getSeconds();
 
+            //초침의 회전각 계산
+            const rSec = 6*sec*(Math.PI/180); // rad
+            //좌표계를 회전시켜서
+            context.rotate(rSec);
             //초침 그리기(시계 중심 좌표를 기준으로 그러본다)
-            context.drawImage(secImg, 0-4, 0-90, 8, 90);
-            //다른 그림에 영향이 가지 않도록 저장했던 정상상태로 context를 되돌린다.
+            context.drawImage(secImg, 0-1, 0-70, 2, 70);
+
+            //분침의 회전각 계산
+            const rMin = (6*min + 6*sec/60)*(Math.PI/180);
+            //분침의 회전각 만큼 좌표계를 회전시켜서
+            context.rotate(rMin-rSec);
+            //분침을 그림
+            context.drawImage(minImg, 0-2, 0-80, 4, 80);
+
+            const rHour = (30*hour + 30*min/60)*(Math.PI/180);
+            context.rotate(rHour-rMin);
+            //시침
+            context.drawImage(hourImg, 0-3, 0-90, 6, 90);
+            //캡 그리기
+            context.drawImage(capImg, -5, -5, 10, 10);
+
+            //좌표계 되돌리기
             context.restore();
+
+            //다른 그림에 영향이 가지 않도록 저장했던 정상상태로 context를 되돌린다.
             
             //총알 구멍 이미지를 반복문 돌면서 모두 그린다
             for(let i=0; i<holes.length; i++){

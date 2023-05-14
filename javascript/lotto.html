@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>로또번호가 canvas안에서 구르다가-> 클릭 한번 하면 나오는 것ㅇㅇ</h1>
+    <canvas id="myCanvas" width="800" height="500"></canvas>
+    <div class="wrapper">
+
+    </div>
+    <script>
+
+        const canvas = document.querySelector("#myCanvas");
+        //canvas에 그림을 그릴 도구(context)객체 얻어내기
+        const context = canvas.getContext("2d");
+
+        const backImg = new Image();
+        backImg.src="images/background.jpg";
+
+        const lottoBalls=[];
+
+        //로또볼 이미지를 저장할 배열
+        const lottoBallsImg=[];
+        //로또볼 이미지 로딩
+        for (let i = 1; i < 46; i++) {
+            let tmp = new Image();
+            tmp.src="images/lotto-ball-"+i+".png";
+            //배열 누적
+            lottoBallsImg.push(tmp); 
+        }
+        //로또볼 추출 카운트
+        let count = 0;
+        //카운트를 셀 변수
+
+        //canvas 그림
+        setInterval(()=>{
+            //함수가 호출될 때마다 count를 1씩 증가
+            context.clearRect(0, 0, 800, 500);
+            context.drawImage(backImg,0,0,800,500);
+            //로또볼 그리기
+            for (let i = 0; i < lottoBalls.length; i++) {
+                let tmp = lottoBalls[i];
+                context.save();
+                context.translate(tmp.x, tmp.y);
+                context.rotate(tmp.rotate);
+                context.drawImage(lottoBallsImg[tmp.index], -25, -25, 50, 50);
+                context.restore();            
+            }
+            //로또볼 움직이기
+            for (let i = 0; i < lottoBalls.length; i++) {
+                let tmp = lottoBalls[i];
+                tmp.x += tmp.speedX;
+                tmp.y += tmp.speedY;
+                tmp.rotate += tmp.rotateNum/1000;
+                //움직인 직후 경계선 터치 판별
+                let isTouchX = tmp.x < 25 || tmp.x > 775;
+                let isTouchY = tmp.y < 25 || tmp.y > 475;
+                if(isTouchX){
+                    tmp.isTouchX=true;
+                }if(isTouchY){
+                    tmp.isTouchY=true;
+                }
+            }
+            //로또볼 체크하기
+            for (let i = 0; i < lottoBalls.length; i++) {
+                let tmp = lottoBalls[i];
+                //만약 i번째 풍선이 화면에 닿으면
+                if(tmp.isTouchX){
+                    tmp.speedX *= -1;
+                    tmp.isTouchX=false;
+                }if(tmp.isTouchY){
+                    tmp.speedY *= -1;
+                    tmp.isTouchY=false;
+                }
+            }
+        },10);
+
+        canvas.addEventListener("mousedown",(e)=>{
+            if(count<6){
+            let ranNum = Math.floor((Math.random()*lottoBalls.length));           
+            let img = document.createElement("img");
+            img.src ="images/lotto-ball-"+ranNum+".png";
+            img.width = 100;
+            img.height = 100;
+            document.querySelector(".wrapper").append(img);
+            lottoBalls.splice(ranNum-1, 1);
+            count++;
+        }else{
+            alert("더 이상 로또볼을 추첨하실 수 없습니다.")
+        }
+
+        });
+
+        backImg.onload=()=>{
+            for (let i = 0; i < 45; i++) {
+            let tmp = {};
+            tmp.x = Math.random()*700+25;
+            tmp.y = Math.random()*400+25;
+            tmp.index = i
+            tmp.speedX = Math.random()*10-5;
+            tmp.speedY = Math.random()*10-5;
+            tmp.isTouchX=false;
+            tmp.isTouchY=false;
+            tmp.rotateNum = Math.random()*18-9;
+            tmp.rotate = 0;
+            //배열에 누적시키기.
+            lottoBalls.push(tmp);            
+        }
+        }
+
+
+        // 문제점 1. 회전속도가 가면 갈수록 빨라집니다 /1000으로 억제했지만 좀더 좋은 방법이 궁금합니다.
+        // 문제점 2. 로또 번호 추출하고 splice로 배열을 제거하는건 좋은데, lottoBallsImg배열이 꼬여서 가끔 중복이 나옵니다
+
+    </script>
+    
+</body>
+</html>

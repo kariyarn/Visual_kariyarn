@@ -60,8 +60,7 @@
                 let tmp = lottoBalls[i];
                 tmp.x += tmp.speedX;
                 tmp.y += tmp.speedY;
-                tmp.rotate += tmp.rotateNum/1000;
-                //움직인 직후 경계선 터치 판별
+                tmp.rotate += tmp.rotateNum/1000;-1               //움직인 직후 경계선 터치 판별
                 let isTouchX = tmp.x < 25 || tmp.x > 775;
                 let isTouchY = tmp.y < 25 || tmp.y > 475;
                 if(isTouchX){
@@ -86,13 +85,19 @@
 
         canvas.addEventListener("mousedown",(e)=>{
             if(count<6){
-            let ranNum = Math.floor((Math.random()*lottoBalls.length));           
+            //lottoballs의 길이만큼 랜덤 숫자 추출
+            let ranNum = Math.floor((Math.random()*lottoBalls.length));   
+            //랜덤 숫자 -> lottoballos[ranNum]으로 지정
+            let ranIndex = lottoBalls[ranNum].index;        
             let img = document.createElement("img");
-            img.src ="images/lotto-ball-"+ranNum+".png";
+            //ranIndex에 해당하는 로또볼 출력
+            img.src ="images/lotto-ball-"+ranIndex+".png";
             img.width = 100;
             img.height = 100;
             document.querySelector(".wrapper").append(img);
-            lottoBalls.splice(ranNum-1, 1);
+            //lottoballs[ranNum].index부터 1만큼 삭제-> 가 안됨ㅇㅇ
+            //index가 다시 0부터 39까지 배열된다 왤까
+            lottoBalls.splice(ranIndex, 1);
             count++;
         }else{
             alert("더 이상 로또볼을 추첨하실 수 없습니다.")

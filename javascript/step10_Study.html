@@ -10,6 +10,7 @@
     <p id="one"></p>
     <p id="two"></p>
     <p id="three">
+        <!-- hr요소가 덮어씌워짐 -->
         <hr>
     </p>
     <p id="four">
@@ -38,6 +39,7 @@
             </p>
             끝난 후에
         */
+       //함수에 참조값을 전달해도 되고 주소를 전달해도 됨
         document.querySelector("#four").insertAdjacentHTML("afterend", `<img src="images/kim1.png">`);
     </script>
 </body>

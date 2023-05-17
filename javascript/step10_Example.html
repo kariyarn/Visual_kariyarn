@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step10_example.html</title>
+</head>
+<body>
+    <button id="addBtn">추가하기</button>
+    <button id="addBtn2">추가하기2</button>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        //원격지 서버로부터 받아온 UI에 출력할 정보를 가지고 있는 JSON문자열이라고 가정하자
+        const data = `{"num" : 1, "name" : "김구라", "addr" : "노량진"}`;
+        document.querySelector("#addBtn").addEventListener("click", ()=>{
+            const obj = JSON.parse(data);
+            const tr=`
+                <tr>
+                    <td>${obj.num}</td>
+                    <td>${obj.name}</td>
+                    <td>${obj.addr}</td>
+                </tr>
+            `
+            document.querySelector("tbody").insertAdjacentHTML("beforeend", tr);
+        });
+        document.querySelector("#addBtn2").addEventListener("click", ()=>{
+            //JSON문서를 활용해서 object를 만든다.
+            const obj = JSON.parse(data);
+            //tr요소를 만들어서 참조값을 변수에 답는다.
+            let tr = document.createElement("tr");
+            //td요소 3개를 만들어서 InnerText를 출력한다
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            td1.innerText = obj.num;
+            td2.innerText = obj.name;
+            td3.innerText = obj.addr;
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            //tr요소를 tbody에 append시킨다.
+            document.querySelector("tbody").append(tr);
+        });
+    </script>
+</body>
+</html>

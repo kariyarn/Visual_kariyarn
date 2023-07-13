@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            margin: 0;
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            background-color: aqua;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .box{
+            animation: zoomIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="box">1</div>
+        </div>
+    </div>
+    <script>
+        let count=0;
+        function makeBox(){
+            count++;
+            //div요소를 동적으로 만들어서 참조값 얻어내기
+            const box = document.createElement("div");
+            //box클래스 추가하고
+            box.classList.add("box");
+            //innerText 출력하고
+            box.innerText=count;
+            //.wrapper div의 자식 요소로 추가하기
+            document.querySelector(".wrapper").append(box);
+            box.addEventListener("click",(e)=>{
+                e.target.remove();
+            })
+        }
+        makeBox();
+    </script>
+</body>
+</html>

@@ -109,17 +109,31 @@
         let angle, tz;
         //y축 기준 회전하는 값을 저장할 변수 선언하고 초기값 0 대입
         let rY=0;
+        
+        let count = 0;
+
+        function getNextNumber() {
+        const number = count;
+        count = count >= 19 ? 0 : count + 1;
+        return number;
+        }
+        
+        function getBeforeNumber() {
+        const number = count;
+        count = count <= 0 ? count=19 : count - 1;
+        return number;
+        }
 
         // 만들어야 할 div 가 n 개 이기 때문에 반복문 n번 돌기(초기설정)
         for(let i=0; i<n; i++){
-            //div 를 만들어서 
-            const div=document.createElement("div");
-            //innerText 를 출력하고 
-            div.innerText="";
-            //.polygon 에 추가하기
-            document.querySelector(".polygon").append(div);
+        //div 를 만들어서 
+        const div=document.createElement("div");
+        //innerText 를 출력하고 
+        div.innerText=animalNames[i];
+        //.polygon 에 추가하기
+        document.querySelector(".polygon").append(div);
         }
-
+        
         //페이지 로딩 시점에 한번 배치
         transformDiv();
 
@@ -154,34 +168,22 @@
         }
 
 
-        //초기 세개만 보이게
-        document.querySelectorAll(".polygon>div")[0].innerText = animalNames[0];
-        document.querySelectorAll(".polygon>div")[1].innerText = animalNames[1];
-        document.querySelectorAll(".polygon>div")[9].innerText = animalNames[19];
-
-        let count = 0;
-
-        function getNextNumber() {
-        const number = count;
-        count = count >= 19 ? 0 : count + 1;
-        return number;
-        }
-        
-        function getBeforeNumber() {
-        const number = count;
-        count = count >= 19 ? 0 : count + 1;
-        return number;
-        }
-
         document.querySelector("#leftBtn").addEventListener("click", ()=>{
             document.querySelector(".polygon").classList.add("transition");
             //반시계 방향으로 회전 시키기 위해 angle 만큼 rY 값을 감소 시킨다.
             rY -= angle;
             rotateY();
             //1번만큼 오른쪽 이동
+            //count를 1만큼 늘림
             getNextNumber();
-            for(let i=0; i<n; i++){
-                document.querySelectorAll(".polygon>div")[i].innerText = animalNames[count];
+            if(count==10){
+                for(let i=0; i<n; i++){
+                    document.querySelectorAll(".polygon>div")[i].innerText = animalNames[count+i]
+                }
+            }else if(count==0){
+                for(let i=0; i<n; i++){
+                document.querySelectorAll(".polygon>div")[i].innerText = animalNames[i]
+                }
             }
         });
 
@@ -191,9 +193,15 @@
             rY += angle;
             rotateY();
             //1번만큼 왼쪽 이동
-            for(let i=0; i<n; i++){
-                getNextNumber();
-                document.querySelectorAll(".polygon>div")[i].innerText = animalNames[count];
+            getBeforeNumber();
+            if(count == 19){
+                for(let i=0; i<n; i++){
+                    document.querySelectorAll(".polygon>div")[i].innerText = animalNames[10+i]
+                }
+            }else if(count==9){
+                for(let i=0; i<n; i++){
+                document.querySelectorAll(".polygon>div")[i].innerText = animalNames[i]
+                }
             }
         });
 
